@@ -7,6 +7,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.vr.miniautorizador.model.dto.CartaoNovoDTO;
 import br.com.vr.miniautorizador.model.dto.TransacaoNovaDTO;
@@ -48,6 +50,7 @@ public class CartaoServiceImpl implements CartaoService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.SERIALIZABLE)
     public String criarTransacao(TransacaoNovaDTO transacaoNova) {
         Optional<Cartao> cartaoOptional = repository.findByNumeroCartao(transacaoNova.getNumeroCartao());
         if(!cartaoOptional.isPresent()){
