@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class TransacaoNovaDTO implements Serializable {
 
     private Long numeroCartao;
-    private String senha;
+    private String senhaCartao;
     private BigDecimal valor;
     
 }
