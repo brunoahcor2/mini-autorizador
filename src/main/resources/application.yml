@@ -1,7 +1,7 @@
 server:
   port: 8080
   servlet:
-    context-path: mini-autorizador
+    context-path: /mini-autorizador
 
 spring:
   application:
