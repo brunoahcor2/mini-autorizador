@@ -22,7 +22,7 @@ public class CartaoRepositoryIntegrationTest {
 
     @Test
     public void criarNovoCartao_Sucesso() {
-        Cartao cartaoNovo = Cartao.builder().numeroCartao(1111L).senha("123").valor(new BigDecimal(500.0)).build();
+        Cartao cartaoNovo = Cartao.builder().id(999L).numeroCartao(1111L).senha("123").valor(new BigDecimal(500.0)).build();
         Cartao cartaoCriado = repository.save(cartaoNovo);
         assertTrue(cartaoCriado != null);
     }
@@ -30,11 +30,11 @@ public class CartaoRepositoryIntegrationTest {
     @Test()
     public void criarNovoCartao_ErroCartaoExistente() {
 
-        Cartao cartaoNovo1 = Cartao.builder().numeroCartao(1234L).senha("123").valor(new BigDecimal(500.0)).build();
+        Cartao cartaoNovo1 = Cartao.builder().id(998L).numeroCartao(9991234L).senha("123").valor(new BigDecimal(500.0)).build();
         repository.save(cartaoNovo1);
 
         assertThrows(DataIntegrityViolationException.class, () -> {
-            Cartao cartaoNovo2 = Cartao.builder().numeroCartao(1234L).senha("456").valor(new BigDecimal(500.0)).build();
+            Cartao cartaoNovo2 = Cartao.builder().id(997L).numeroCartao(9991234L).senha("456").valor(new BigDecimal(500.0)).build();
             repository.save(cartaoNovo2);
         });
     }
