@@ -62,6 +62,9 @@ public class CartaoServiceImpl implements CartaoService {
         if(transacaoNova.getValor().compareTo(cartaoOptional.get().getValor()) == 1){
             return "SALDO_INSUFICIENTE";
         }
+        Cartao cartaoAtualizado = cartaoOptional.get();
+        cartaoAtualizado.setValor(cartaoAtualizado.getValor().subtract(transacaoNova.getValor()).setScale(2, BigDecimal.ROUND_HALF_EVEN));
+        repository.save(cartaoAtualizado);
         return "OK";
     }
 
