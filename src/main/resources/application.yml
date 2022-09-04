@@ -6,3 +6,11 @@ server:
 spring:
   application:
     name: mini-autorizador
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/miniautorizador
+    username: root
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: true
